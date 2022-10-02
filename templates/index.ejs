@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <script type="text/javascript">
+      function validate() {
+        var user = document.getElementById("e").value;
+        var user2 = document.getElementById("e");
+        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (re.test(user)) {
+          alert("done");
+          return true;
+        } else {
+          user2.style.border = "red solid 3px";
+          return false;
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <h3>Nhà xuất bản ABC</h3>
+    <h1>Danh mục bài báo</h1>
+    <table>
+      <tr>
+        <th>STT</th>
+        <th>Tên bài báo</th>
+        <th>Tên nhóm tác giả</th>
+        <th>ISBN</th>
+        <th>Số trang</th>
+        <th>Năm xuất bản</th>
+      </tr>
+      <% for (let i = 0; i < baiBaos.length ;i++){ %>
+      <tr>
+        <td><%= baiBaos[i].ID %></td>
+        <td class="blue"><%= baiBaos[i].TenBaiBao %></td>
+        <td><%= baiBaos[i].TenNhomTacGia %></td>
+        <td><%= baiBaos[i].ISBN %></td>
+        <td><%= baiBaos[i].SoTrang %></td>
+        <td><%= baiBaos[i].NamXuatBan %></td>
+        <td>
+          <form
+            action="/deleteBaiBao"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <input type="text" name="ID" hidden value="<%= baiBaos[i].ID %>" />
+            <button type="submit" class="button-3" role="button">
+              xóa bài báo
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <input type="text" name="ID" placeholder="Nhập mã bài báo" />
+      <input type="text" name="TenBaiBao" placeholder="Nhập tên bài báo" />
+      <input
+        type="text"
+        name="TenNhomTacGia"
+        placeholder="Nhập tên nhóm tác giả"
+      />
+      <input type="text" name="ISBN" placeholder="Nhập chỉ số ISBN" />
+      <input type="text" id="e" name="SoTrang" placeholder="Nhập số trang" />
+      <input type="text" name="NamXuatBan" placeholder="Nhập năm xuất bản" />
+      <input  type="submit" onclick="validate()" value="Thêm bài báo" />
+    </form>
+  </body>
+</html>
