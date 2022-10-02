@@ -58,18 +58,50 @@
       <% } %>
     </table>
 
-    <form action="/" method="POST" enctype="multipart/form-data">
-      <input type="text" name="ID" placeholder="Nhập mã bài báo" />
-      <input type="text" name="TenBaiBao" placeholder="Nhập tên bài báo" />
+    <form
+      id="commentForm"
+      action="/"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="text"
+        minlength="2"
+        name="ID"
+        placeholder="Nhập mã bài báo"
+        required
+      />
+      <input
+        type="text"
+        type="email"
+        name="TenBaiBao"
+        placeholder="Nhập tên bài báo"
+        required
+      />
       <input
         type="text"
         name="TenNhomTacGia"
         placeholder="Nhập tên nhóm tác giả"
+        required
       />
-      <input type="text" name="ISBN" placeholder="Nhập chỉ số ISBN" />
-      <input type="text" id="e" name="SoTrang" placeholder="Nhập số trang" />
-      <input type="text" name="NamXuatBan" placeholder="Nhập năm xuất bản" />
-      <input  type="submit" onclick="validate()" value="Thêm bài báo" />
+      <input type="text" name="ISBN" placeholder="Nhập chỉ số ISBN" required />
+      <input
+        type="text"
+        id="e"
+        name="SoTrang"
+        placeholder="Nhập số trang"
+        required
+      />
+      <input
+        type="text"
+        name="NamXuatBan"
+        placeholder="Nhập năm xuất bản"
+        required
+      />
+      <input type="submit" onclick="validate()" value="Thêm bài báo" />
     </form>
+    <script>
+      $("#commentForm").validate();
+    </script>
   </body>
 </html>
